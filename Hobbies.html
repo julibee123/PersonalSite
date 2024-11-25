@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hobbies</title>
+
+
+<style>
+        #introscreen{
+            position: fixed;
+            z-index: 5;
+            width: 100vw;
+            height: 100vh;
+            top: 0px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 1px;
+            animation: introanim 1.5s;
+        }
+
+        @keyframes introanim {
+            0% {opacity: 1;}
+            80% {opacity: 1;}
+            100% {opacity: 0;}
+        }
+
+        .no-scroll {
+        height: 100%;
+        overflow: hidden;
+        }
+
+        .leftbox {
+            padding: 50px;
+            background-color: beige;
+            margin: 40px 0;
+            position: relative;
+            right: 0px;
+            transition: 1s;
+            z-index: 2;
+            border-radius: 0 0 0 10px;
+            opacity: 0.7;
+        }
+
+        .leftbox:hover {
+            right: 50px !important;
+            opacity: 1 !important;
+        }
+
+        .leftbox::after{
+            content: "";
+            width: 40%;
+            height: 100%;
+            position: absolute;
+                        top: 50%;
+                        left: 110%;
+                        transform: translate(-50%, -50%);
+            z-index: 0;
+        }
+
+        #gameselect {
+                background-color: rgb(106, 189, 251);
+        }
+        #gameselect::after {
+                background-color: rgb(49, 106, 150);
+        }
+        #cookselect {
+                background-color: rgb(246, 224, 100);
+        }
+        #cookselect::after {
+                background-color: rgb(166, 152, 70);
+        }
+        #editselect {
+                background-color: rgb(154, 129, 254);
+        }
+        #editselect::after {
+                background-color: rgb(127, 95, 179);
+        }
+
+        .hobbybox {
+            height: 100%;
+            position: absolute;
+            border-radius: 0 10px 10px 0;
+            top: -100vh;
+            transition: 1s;
+            opacity: 1;
+            box-shadow: 0 0 0 0 transparent,  0 0 0 0 transparent, 0 0 0 0 transparent, -1px 10px 20px -3px rgba(0, 0, 0, 0.286);
+        }
+
+        #gamebox{
+            z-index: 3;
+            background-color: rgb(218, 239, 255);
+        }
+        #cookbox{
+            z-index: 2;
+            background-color: rgb(255, 250, 223);
+        }
+        #editbox{
+            z-index: 1;
+            background-color: rgb(231, 231, 255);
+        }
+
+        .Game1{
+            background-image: url(Game1.avif);
+            background-repeat: repeat-y;
+            background-size: cover;
+            background-position-y: -200px;
+            color: transparent;
+            font-size: 20px;
+            font-weight: 400; 
+            width: 100%;
+            height: 300px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+
+        .Game2{
+            background-image: url(Game2.jpg);
+            background-repeat: repeat-y;
+            background-size: cover;
+            background-position-y: -200px;
+            color: transparent;
+            font-size: 20px;
+            font-weight: 400;
+            width: 100%;
+            height: 300px;
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+        }
+
+        .Cook1{
+            background-image: url(Cook1.jpg);
+            background-repeat: repeat-y;
+            background-size: cover;
+            color: transparent;
+            font-size: 20px;
+            font-weight: 400; 
+            width: 100%;
+            height: 300px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+
+        .Cook2{
+            background-image: url(Cook2.jpg);
+            background-repeat: repeat-y;
+            background-size: cover;
+            color: transparent;
+            font-size: 20px;
+            font-weight: 400;
+            width: 100%;
+            height: 300px;
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+        }
+
+        .Edit1{
+            background-image: url(Edit1.png);
+            background-repeat: repeat-y;
+            background-size: cover;
+            color: transparent;
+            font-size: 20px;
+            font-weight: 400; 
+            width: 100%;
+            height: 300px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+
+        .Edit2{
+            background-image: url(Edit2.png);
+            background-repeat: repeat-y;
+            background-size: cover;
+            color: transparent;
+            font-size: 20px;
+            font-weight: 400;
+            width: 100%;
+            height: 300px;
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+        }
+
+        .gameinfo {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; font-size: 20px;
+        }
+
+        .cookinfo {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; font-size: 20px;
+        }
+
+        .editinfo {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; font-size: 20px;
+        }
+
+        .hobbymain{
+            height: 100vh; display: flex;  align-items: center;  justify-content: center; color: white;
+        }
+
+        @media only screen and (max-width: 1186px) {
+            .Game1{
+                background-position-y: 0px;
+            }
+            .Game2 {
+                background-position-y: 0px;
+            }
+        }
+
+        @media only screen and (max-width: 430px) {
+            .gameinfo{
+                font-size: 0px;
+                background-image: url(Game3.jpg);
+                background-repeat: repeat-y;
+                background-size: cover;
+                width: 100%;
+                height: 300px;
+            }
+            .cookinfo {
+                font-size: 0px;
+                background-image: url(Cook3.jpg);
+                background-repeat: repeat-y;
+                background-size: cover;
+                width: 100%;
+                height: 300px;
+            }
+            .editinfo {
+                font-size: 0px;
+                background-image: url(Edit3.png);
+                background-repeat: repeat-y;
+                background-size: cover;
+                width: 100%;
+                height: 300px;
+            }
+            .hobbymain{
+                writing-mode: vertical-lr;
+                text-orientation: upright;
+            }
+        }
+
+</style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    
+</head>
+<body style="background-color: #7fe789; transition: 1s;">
+    <div id="introscreen"><img src="loadingduck.gif" style="position: relative; top: 40px;"><img src="loadingbar.gif" style="position: relative; top: -50px; filter: invert();"></div>
+
+<div style="display: flex; overflow: hidden; align-items: center;">
+            <div class="bg-dark ps-5 pt-5 pb-5 ms-2 mt-3 mb-3" style="display: flex; flex: 1; flex-direction: column; border-radius: 10px 0 0 10px; gap:20px">
+                <div class="leftbox h5" id="gameselect">Gaming</div>
+                <div class="leftbox h5" id="cookselect">Cooking</div>
+                <div class="leftbox h5" id="editselect">Editing</div>
+            </div>
+
+            <div class="bg-dark" style="flex: 4; position: relative; z-index: 2; box-shadow: -10px 0 10px -3px rgba(0,0,0,0.3), 0 0 0 0 transparent, 0 0 0 0 transparent, 0 0 0 0 transparent;">
+                <div class="container hobbybox" id="gamebox">
+                    <div>
+                        <div class="Game1"></div>
+                        <div class="container gameinfo">One of my favorite games that I return to often!</div>
+                        <div class="Game2"></div>
+                    </div>
+                </div>
+
+                <div class="container hobbybox" id="cookbox">
+                    One of the only things I can cook and most frequently cook.
+                    <div>
+                        <div class="Cook1"></div>
+                        <div class="container cookinfo">One of the only things I can cook and most frequently cook.</div>
+                        <div class="Cook2"></div>
+                    </div>
+                </div>
+
+                <div class="container hobbybox" id="editbox">
+                            <div>
+                                <div class="Edit1"></div>
+                                <div class="container editinfo">Some of the editing assets I've made!</div>
+                                <div class="Edit2"></div>
+                            </div>
+                </div>
+
+                <div class="container hobbymain"><h1> My Hobbies </h1></div>
+            </div>
+</div>
+
+<script>
+    let gamebox = document.getElementById("gamebox");
+    let cookbox = document.getElementById("cookbox");
+    let editbox = document.getElementById("editbox");
+
+    let gameselect = document.getElementById("gameselect");
+    let cookselect = document.getElementById("cookselect");
+    let editselect = document.getElementById("editselect");
+
+    gameselect.addEventListener('click', function() {
+        gameselect.style.right="50px";
+        cookselect.style.right="0px";
+        editselect.style.right="0px";
+        gameselect.style.opacity="1";
+        cookselect.style.opacity="0.7";
+        editselect.style.opacity="0.7";
+
+        gamebox.style.top="0px";
+        cookbox.style.top="-100vh";
+        editbox.style.top="-100vh";
+
+        document.body.style.backgroundColor="#468faf";
+    });
+
+    cookselect.addEventListener('click', function() {
+        gameselect.style.right="0px";
+        cookselect.style.right="50px";
+        editselect.style.right="0px";
+        gameselect.style.opacity="0.7";
+        cookselect.style.opacity="1";
+        editselect.style.opacity="0.7";
+
+        gamebox.style.top="-100vh";
+        cookbox.style.top="0px";
+        editbox.style.top="-100vh";
+
+        document.body.style.backgroundColor="#bfa53c";
+    });
+
+    editselect.addEventListener('click', function() {
+        gameselect.style.right="0px";
+        cookselect.style.right="0px";
+        editselect.style.right="50px";
+        gameselect.style.opacity="0.7";
+        cookselect.style.opacity="0.7";
+        editselect.style.opacity="1";
+
+        gamebox.style.top="-100vh";
+        cookbox.style.top="-100vh";
+        editbox.style.top="0px";
+
+        document.body.style.backgroundColor="#5c57b6";
+    });
+
+
+
+        window.onload = function disableScroll() {
+    document.body.classList.add('no-scroll');
+    }
+
+    const introScreen = setTimeout(introload, 1500);
+    function introload() {
+        document.getElementById("introscreen").style.opacity="0";
+        document.body.classList.remove('no-scroll');
+    }
+    const removeScreen = setTimeout(removeload, 2000);
+    function removeload() {
+        document.getElementById("introscreen").style.display="none";
+    } 
+</script>
+
+</body>
+</html>
